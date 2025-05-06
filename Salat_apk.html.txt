@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Salat & Dhikr Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #85C285;
+      padding: 20px;
+      color: #154360;
+    }
+    h2 {
+      color: #1D8348;
+      margin-top: 30px;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    label {
+      display: inline-block;
+      width: 100px;
+    }
+    .salat-group, .task-group {
+      margin-bottom: 10px;
+    }
+    .dhikr-row {
+      margin-bottom: 10px;
+    }
+    input[type="number"], select {
+      padding: 5px;
+      margin-left: 10px;
+    }
+    .checkbox {
+      margin-left: 10px;
+    }
+    .submit-btn {
+      background-color: #27AE60;
+      color: white;
+      font-size: 16px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🕌 Salat & Dhikr Tracker</h1>
+
+  <h2>Salāh Tracking</h2>
+  <form id="tracker-form">
+    <div class="section" id="salat-section"></div>
+
+    <h2>🌅 Adkār (Morning & Evening)</h2>
+    <div class="section" id="adkar-section">
+      <div class="task-group"><input type="checkbox" name="Morning Adkar" /> Morning Adkar</div>
+      <div class="task-group"><input type="checkbox" name="Evening Adkar" /> Evening Adkar</div>
+      <div class="task-group"><input type="checkbox" name="Surah Mulk" /> Surah Mulk</div>
+      <div class="task-group"><input type="checkbox" name="Surah Waqiah" /> Surah Waqiah</div>
+    </div>
+
+    <h2>🤲 Dhikr Tasks</h2>
+    <div class="section">
+      <div class="dhikr-row">Darud: <input type="number" name="Darud" min="0" /></div>
+      <div class="dhikr-row">Sadaqah: <input type="number" name="Sadaqah" min="0" /></div>
+      <div class="dhikr-row">Istighfar: <input type="number" name="Istighfar" min="0" /></div>
+    </div>
+
+    <button class="submit-btn" type="submit">✅ Submit</button>
+  </form>
+
+  <script>
+    const salats = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
+    const salatSection = document.getElementById("salat-section");
+
+    salats.forEach(salat => {
+      const row = document.createElement("div");
+      row.className = "salat-group";
+      row.innerHTML = `
+        <label>${salat}</label>
+        <select name="${salat}">
+          <option value="Jamaʿah">Jamaʿah</option>
+          <option value="Alone">Alone</option>
+          <option value="Qadhaʾ">Qadhaʾ</option>
+        </select>
+        <label class="checkbox">
+          <input type="checkbox" name="Taqwīrah al-Ūlā ${salat}" /> Taqwīrah al-Ūlā
+        </label>
+      `;
+      salatSection.appendChild(row);
+    });
+
+    document.getElementById("tracker-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Data submitted! (Local storage or database integration can be added)");
+    });
+  </script>
+</body>
+</html>
